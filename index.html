@@ -60,7 +60,7 @@ form.addEventListener('submit', function(event) {
 });
 window.addEventListener('message', function(event) {
   // Apps Script may relay responses from googleusercontent.com, script.google.com, or a sandboxed null origin.
-  if (event.source !== document.getElementById('receiver').contentWindow) return;
+  // Google Apps Script HtmlService may send from a nested iframe; validate origin and token instead.
   if (event.origin !== 'null') { try { const h = new URL(event.origin).hostname; if (!(h === 'googleusercontent.com' || h.endsWith('.googleusercontent.com') || h === 'script.google.com')) return; } catch(e) { return; } }
   const data = event.data;
   if (!data || data.source !== 'MITSU_FORM' || data.token !== activeToken) return;
