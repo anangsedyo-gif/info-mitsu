@@ -22,7 +22,7 @@
 </form>
 <p class="notice">Konfirmasi yang dikirim akan masuk ke Google Sheets panitia untuk diverifikasi. Jangan masukkan PIN, kata sandi, atau informasi rahasia perbankan. Donasi dianggap diterima setelah panitia memverifikasi transfer.</p>
 <iframe id="receiver" name="receiver" title="Pengiriman formulir" style="display:none"></iframe>
-</div></main><footer>© MITSU — Masjid Indonesia Hamamatsu</footer>
+</div></main><footer>© MITSU — Masjid Indonesia Hamamatsu · Form v2</footer>
 <script>
 // GANTI dengan URL Web App dari Google Apps Script (berakhiran /exec).
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxq5tUZKN-zEToNiajoT5cJc68l_ytnz_ot783Q7FSfptTIxr0huvNsp9cyTt6ABqzJxA/exec';
@@ -54,7 +54,7 @@ form.addEventListener('submit', function(event) {
   submittedOnce = true;
   setStatus('Sedang mengirim konfirmasi... Mohon tunggu.', true);
   clearTimeout(waitTimer);
-  waitTimer = setTimeout(() => { if (!activeToken) return; setStatus('Konfirmasi telah dikirim untuk diproses, tetapi status penyimpanan belum dapat dipastikan dari halaman ini. Mohon jangan kirim ulang. Panitia dapat memeriksa Google Sheets untuk memastikan data diterima.', false); activeToken = ''; }, 20000);
+  waitTimer = setTimeout(() => { if (!activeToken) return; setStatus('Belum menerima tanda terima otomatis. Jangan kirim ulang sebelum panitia memastikan data pada Google Sheets.', false); activeToken = ''; }, 20000);
   HTMLFormElement.prototype.submit.call(form);
   token.remove(); website.remove();
 });
